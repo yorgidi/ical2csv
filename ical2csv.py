@@ -13,7 +13,9 @@ filename = sys.argv[1]
 # TODO: use regex to get file extension (chars after last period), in case it's not exactly 3 chars.
 file_extension = str(sys.argv[1])[-3:]
 headers = ('OnDuty', 'Start Time', 'End Time')
-estzone = timezone('Europe/Sofia')
+sofiazone = timezone('Europe/Sofia')
+peopleToFilter = ["jveli@vmware.com", "mapostolova@vmware.com", "gbalabanov@vmware.com", "tjecheva@vmware.com", "tivanov@vmware.com", "syanev@vmware.com"]
+monthToFilter = datetime.date(2020, 12, 1)
 
 class CalendarEvent:
     """Calendar event class"""
@@ -38,9 +40,9 @@ def open_cal():
                 event = CalendarEvent("event")
                 event.onduty = component.get('ATTENDEE')
                 if hasattr(component.get('dtstart'), 'dt'):
-                    event.start = component.get('dtstart').dt.astimezone(estzone)
+                    event.start = component.get('dtstart').dt.astimezone(sofiazone)
                 if hasattr(component.get('dtend'), 'dt'):
-                    event.end = component.get('dtend').dt.astimezone(estzone)
+                    event.end = component.get('dtend').dt.astimezone(sofiazone)
                 
                 events.append(event)
             f.close()
@@ -76,11 +78,9 @@ def filterNonWorkingHours(duty):
     #return duties
 
 def filterSofia():
-    peopleToFilter = ["jveli@vmware.com", "mapostolova@vmware.com", "gbalabanov@vmware.com", "tjecheva@vmware.com", "tivanov@vmware.com"]
     sofiaDuties = list(filter(lambda obj: obj.onduty in peopleToFilter, events))
-    filterFrom  = datetime.date(2020, 12, 1)
-    filterTo = filterFrom + relativedelta.relativedelta(months=1)
-    sofiaDutiesSelectedMonth = list(filter(lambda obj: obj.start.date() >= filterFrom and obj.start.date() < filterTo, sofiaDuties))
+    filterTo = monthToFilter + relativedelta.relativedelta(months=1)
+    sofiaDutiesSelectedMonth = list(filter(lambda obj: obj.start.date() >= monthToFilter and obj.start.date() < filterTo, sofiaDuties))
     return list(filter(lambda obj: filterNonWorkingHours(obj), sofiaDutiesSelectedMonth))
 
 def debug_event(class_name):

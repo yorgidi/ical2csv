@@ -40,7 +40,7 @@ Download the script or clone the project and get it from there.
 
 Call the script and pass in the location of the ics file.
 
-Ex: `python ical2txt.py event.ics` / `python3 ical2txt.py event.ics`
+Ex: `python ical2txt.py event.ics` / `python3 ical2txt.py event.ics` / `python3 ical2csv.py ./ical-test/oncallidentity.ics`
 
 ## Contributing
 
