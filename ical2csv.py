@@ -14,8 +14,8 @@ filename = sys.argv[1]
 file_extension = str(sys.argv[1])[-3:]
 headers = ('OnDuty', 'Start Time', 'End Time')
 sofiazone = timezone('Europe/Sofia')
-peopleToFilter = ["jveli@vmware.com", "mapostolova@vmware.com", "gbalabanov@vmware.com", "tjecheva@vmware.com", "tivanov@vmware.com", "syanev@vmware.com"]
-monthToFilter = datetime.date(2020, 12, 1)
+peopleToFilter = ["jveli@vmware.com", "mapostolova@vmware.com", "gbalabanov@vmware.com", "tjecheva@vmware.com", "tivanov@vmware.com", "syanev@vmware.com", "anatolii@vmware.com", "dvenkov@vmware.com", "dtsonkova@vmware.com", "hmarichkovat@vmware.com", "mtalipova@vmware.com", "hmihail@vmware.com", "nvelchev@vmware.com", "odanailov@vmware.com", "ptotev@vmware.com", "angelovr@vmware.com", "sslavchev@vmware.com", "stefanovt@vmware.com", "ovasilev@vmware.com", "nkirchev@vmware.com", "pkovachev@vmware.com"]
+monthToFilter = datetime.date(2021, 1, 1)
 
 class CalendarEvent:
     """Calendar event class"""
